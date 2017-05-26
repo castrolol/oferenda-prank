@@ -1,3 +1,6 @@
+import Target from "./target";
+import Victim from "./victim";
+
 
 class Scene {
 
@@ -6,6 +9,8 @@ class Scene {
         this.canvas = canvas;
         this.ctx = canvas.getContext("2d");
         this.sceneObjects = [];
+        this.width = canvas.width;
+        this.height = canvas.height;
     }
 
     start(){
@@ -16,17 +21,27 @@ class Scene {
 
     init(){
         //TODO: init logic
+
+        this.sceneObjects.push(new Target());
+        this.sceneObjects.push(new Victim());
+
+
+        this.sceneObjects.forEach( obj => {
+            obj.attach(this);
+            obj.init();
+        });
+
     }
 
 
     draw(){
-        //TODO: draw logic
+        this.sceneObjects.forEach(obj => obj.draw(this.ctx));
         requestAnimationFrame(() => this.draw());
     }
 
 
     update(){
-        //TODO: update logic
+        this.sceneObjects.forEach(obj => obj.update());
         setTimeout(() => this.update(), 16);
     }
 
