@@ -1,6 +1,6 @@
 import Target from "./target";
 import Victim from "./victim";
-
+import Mouse from "./input/mouse";
 
 class Scene {
 
@@ -11,6 +11,7 @@ class Scene {
         this.sceneObjects = [];
         this.width = canvas.width;
         this.height = canvas.height;
+        Mouse.listenTo(canvas);
     }
 
     start(){
@@ -35,6 +36,7 @@ class Scene {
 
 
     draw(){
+        this.ctx.clearRect(0, 0, this.width, this.height);
         this.sceneObjects.forEach(obj => obj.draw(this.ctx));
         requestAnimationFrame(() => this.draw());
     }
