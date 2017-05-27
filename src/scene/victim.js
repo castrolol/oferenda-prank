@@ -16,14 +16,21 @@ class Victim extends SceneObject {
 
         this.falling = false;
         this.speedInc = 0.5;
-
+        this.show = false;
 
 
     }
 
     update() {
 
-
+        if (!this.show) {
+            if (Mouse.x != 0 && Mouse.y != 0) {
+                this.show = true;
+                this.position.x = Mouse.x - (this.width / 2);
+                this.position.y = Mouse.y - (this.height / 2);
+                
+            }
+        }
         if (!this.falling) {
             this.position.x = Mouse.x - (this.width / 2);
             this.position.y = Mouse.y - (this.height / 2);
@@ -45,8 +52,8 @@ class Victim extends SceneObject {
 
 
     draw(ctx) {
- 
-        if(Mouse.x == 0 || Mouse.y == 0) return;
+
+        if (!this.show) return;
         ctx.beginPath();
         ctx.fillStyle = "#ffaa00";
         ctx.rect(this.position.x, this.position.y, this.width, this.height);

@@ -2,7 +2,7 @@ import SceneObject from './base/scene-object';
 
 
 
-class Target extends SceneObject {
+class TargetFront extends SceneObject {
 
 
     init(){
@@ -15,7 +15,7 @@ class Target extends SceneObject {
         this.position.y = this.scene.height - this.height - 10;
 
         this.image = new Image();
-        this.image.src = "/caldeirao_fundo.png";
+        this.image.src = "/caldeirao_frente.png";
 
 
     }
@@ -36,4 +36,4 @@ class Target extends SceneObject {
 }
 
 
-export default Target;
+export default TargetFront;
