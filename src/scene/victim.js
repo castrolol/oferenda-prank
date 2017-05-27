@@ -26,8 +26,10 @@ class Victim extends SceneObject {
         this.show = false;
         this.min = this.target.position.x + this.width + 10;
         this.max = this.target.position.x + this.target.width - this.width - 15;
-        this.image = new Image();
-        this.image.src = baseUrl + "/victim.png";
+        if (!this.image) {
+            this.image = new Image();
+            this.image.src = baseUrl + "/victim.png";
+        }
     }
 
     update() {
@@ -55,7 +57,7 @@ class Victim extends SceneObject {
 
         }
 
-        if (this.position.y <= this.scene.height - 100) {
+        if (this.position.y <= this.scene.height - 120) {
 
             this.position.y += 2 + this.speedInc;
             this.speedInc += 0.4;

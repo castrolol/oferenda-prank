@@ -9,26 +9,29 @@ class Wall extends SceneObject {
     init() {
 
 
-        this.width = 200;
-        this.height = 100;
 
-        this.position.x = 0;
-        this.position.y = 0;
 
-        this.image = new Image();
-        this.pieces = Math.ceil(this.scene.width / this.width);
-        this.loaded = false;
-        this.image.onload = e => {
-            var desiredSize = this.scene.height - 100;
-            var ratio = desiredSize / this.image.height;
-            this.height = desiredSize;
-            this.width = Math.ceil(this.image.width * ratio);
-            this.loaded = true;
+        if (!this.image) {
+            this.width = 200;
+            this.height = 100;
 
+            this.position.x = 0;
+            this.position.y = 0;
+            this.image = new Image();
             this.pieces = Math.ceil(this.scene.width / this.width);
-        };
+            this.loaded = false;
+            this.image.onload = e => {
+                var desiredSize = this.scene.height - 100;
+                var ratio = desiredSize / this.image.height;
+                this.height = desiredSize;
+                this.width = Math.ceil(this.image.width * ratio);
+                this.loaded = true;
 
-        this.image.src = baseUrl + "/wall.jpg";
+                this.pieces = Math.ceil(this.scene.width / this.width);
+            };
+
+            this.image.src = baseUrl + "/wall.jpg";
+        }
     }
 
     update() {

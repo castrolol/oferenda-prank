@@ -13,11 +13,11 @@ class Target extends SceneObject {
 
         this.position.x = 0;
         this.position.y = this.scene.height - this.height;
-
-        this.image = new Image();
-        this.image.src = baseUrl + "/floor.png";
-        this.pieces = Math.ceil(this.scene.width / this.width);
-
+        if (!this.image) {
+            this.image = new Image();
+            this.image.src = baseUrl + "/floor.png";
+            this.pieces = Math.ceil(this.scene.width / this.width);
+        }
     }
 
     update() {

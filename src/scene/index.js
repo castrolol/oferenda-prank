@@ -21,9 +21,7 @@ class Scene {
         this.stop = true;
         Mouse.listenTo(canvas);
         Mouse.onLeave(() => {
-            this.stop = true;
-            this.destroy();
-            setTimeout(() => this.start(), 200);
+             setTimeout(() => this.reset(), 200);
         })
     }
 
@@ -34,8 +32,8 @@ class Scene {
         this.update();
     }
 
-    destroy() {
-        this.sceneObjects = [];
+    reset() {
+         this.sceneObjects.forEach(obj => obj.init());
     }
 
     init() {

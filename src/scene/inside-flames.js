@@ -28,18 +28,18 @@ class Flames extends SceneObject {
         this.elapsed = 0;
         this.putFire = 0;
         this.firePoint = 0;
-        this.alreadyFired = false;
     }
 
     init() {
 
 
+        this.alreadyFired = false;
         this.targetX = this.scene.width / 2;
         this.targetY = this.scene.height - 120;
         this.firePoint = this.targetY - 30;
         this.sound = new Audio(baseUrl + "/burn.mp3");
         this.sound.autoplay = false;
-        this.sound.load(); 
+        this.sound.load();
         this.sound.loop = false;
     }
 
@@ -60,8 +60,11 @@ class Flames extends SceneObject {
 
         if (this.putFire > 0) {
             this.putFire -= this.scene.deltaTime * 1.5;
-        } else {
-            this.putFire = 0;
+        } 
+        
+        
+        if(!this.alreadyFired) {
+            if(this.putFire < 0) this.putFire = 0;
             var canBurn = true;
             canBurn = canBurn && this.victim.falling;
             canBurn = canBurn && !this.alreadyFired;

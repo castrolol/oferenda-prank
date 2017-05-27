@@ -6,7 +6,7 @@ const baseUrl = window.baseUrl;
 class TargetFront extends SceneObject {
 
 
-    init(){
+    init() {
 
 
         this.width = 300;
@@ -14,19 +14,19 @@ class TargetFront extends SceneObject {
 
         this.position.x = (this.scene.width / 2) - (this.width / 2);
         this.position.y = this.scene.height - this.height - 10;
-
-        this.image = new Image();
-        this.image.src = baseUrl + "/caldeirao_frente.png";
-
+        if (!this.image) {
+            this.image = new Image();
+            this.image.src = baseUrl + "/caldeirao_frente.png";
+        }
 
     }
 
-    update(){
-        
+    update() {
+
     }
 
 
-    draw(ctx){
+    draw(ctx) {
         ctx.beginPath();
         ctx.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
         ctx.closePath();
