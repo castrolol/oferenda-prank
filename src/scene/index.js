@@ -1,7 +1,10 @@
 import Target from "./target";
+import Floor from "./floor";
+import Wall from "./wall";
 import TargetFront from "./target-front";
 import Victim from "./victim";
 import Flames from "./flames";
+import FlamesInside from "./inside-flames";
 import Mouse from "./input/mouse";
 
 class Scene {
@@ -15,22 +18,38 @@ class Scene {
         this.height = canvas.height;
         this.lastUpdate = new Date();
         this.deltaTime = 0;
+        this.stop = true;
         Mouse.listenTo(canvas);
+        Mouse.onLeave(() => {
+            this.stop = true;
+            this.destroy();
+            setTimeout(() => this.start(), 200);
+        })
     }
 
     start() {
+        this.stop = false;
         this.init();
         this.draw();
         this.update();
     }
 
+    destroy() {
+        this.sceneObjects = [];
+    }
+
     init() {
         //TODO: init logic
+        var target = new Target();
+        var victim = new Victim(target);
+        this.sceneObjects.push(new Wall());
+        this.sceneObjects.push(new Floor());
+        this.sceneObjects.push(target);
+        this.sceneObjects.push(new FlamesInside(victim));
+        this.sceneObjects.push(victim);
 
-        this.sceneObjects.push(new Target());
-        this.sceneObjects.push(new Victim());
         this.sceneObjects.push(new TargetFront());
-        
+
         this.sceneObjects.push(new Flames());
 
         this.sceneObjects.forEach(obj => {
@@ -42,7 +61,7 @@ class Scene {
 
 
     draw() {
-
+        if (this.stop) return;
         this.ctx.clearRect(0, 0, this.width, this.height);
         this.sceneObjects.forEach(obj => obj.draw(this.ctx));
         requestAnimationFrame(() => this.draw());
@@ -50,6 +69,8 @@ class Scene {
 
 
     update() {
+
+        if (this.stop) return;
         var deltaTime = (new Date() - this.lastUpdate) / 1000;
         this.lastUpdate = new Date();
         this.deltaTime = deltaTime;

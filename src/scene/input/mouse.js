@@ -20,15 +20,21 @@ class Mouse {
 
     }
 
+    static onLeave(callback) {
+        Mouse.canvas.addEventListener("mouseleave", e => {
+            callback();
+        });
+    }
+
     static get isMouseDown() {
         return Mouse._isPressed;
     }
 
-    static get x(){
-        return Mouse._x || 0; 
+    static get x() {
+        return Mouse._x || 0;
     }
 
-    static get y(){
+    static get y() {
         return Mouse._y || 0;
     }
 
