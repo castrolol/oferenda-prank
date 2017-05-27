@@ -43,7 +43,7 @@ class Wall extends SceneObject {
         if (!this.loaded) return;
 
         ctx.beginPath();
-        ctx.fillStyle = "black";
+        ctx.fillStyle = "#333";
         ctx.rect(0, 0, this.scene.width, this.scene.height);
         ctx.fill();
         var pieces = this.pieces;

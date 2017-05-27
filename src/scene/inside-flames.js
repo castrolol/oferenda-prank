@@ -49,8 +49,6 @@ class Flames extends SceneObject {
         var targetY = [this.targetY - 5, this.targetY + 5]
         var speed = this.speed;
         for (var i = 0; i < 20; i++) {
-
-            //Adds a particle at the mouse position, with random horizontal and vertical speeds
             var p = new Particle(getrandom(targetX[0], targetX[1]), getrandom(targetY[0], targetY[1]), (Math.random() * 2 * speed - speed) / 2, 0 - Math.random() * 2 * speed);
             this.particles.push(p);
         }
@@ -60,11 +58,11 @@ class Flames extends SceneObject {
 
         if (this.putFire > 0) {
             this.putFire -= this.scene.deltaTime * 1.5;
-        } 
-        
-        
-        if(!this.alreadyFired) {
-            if(this.putFire < 0) this.putFire = 0;
+        }
+
+
+        if (!this.alreadyFired) {
+            if (this.putFire < 0) this.putFire = 0;
             var canBurn = true;
             canBurn = canBurn && this.victim.falling;
             canBurn = canBurn && !this.alreadyFired;
@@ -114,16 +112,13 @@ class Flames extends SceneObject {
                 var color = (60 - (particle.life * 2));
                 ctx.fillStyle = "rgba(" + color + "," + color + "," + color + "," + (((maxLife - particle.life) / maxLife) * 0.4) + ")";
             }
-            //Draw the particle as a circle, which gets slightly smaller the longer it's been alive for
             ctx.arc(particle.x, particle.y, (maxLife - particle.life) / maxLife * (size / 2) + (size / 2), 0, 2 * Math.PI);
             ctx.fill();
 
-            //Move the particle based on its horizontal and vertical speeds
             particle.x += particle.xs;
             particle.y += particle.ys;
 
             particle.life++;
-            //If the particle has lived longer than we are allowing, remove it from the array.
 
 
 

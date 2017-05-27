@@ -22,7 +22,7 @@ class Victim extends SceneObject {
         this.position.y = 128;
 
         this.falling = false;
-        this.speedInc = 0.5;
+        this.speedInc = 0.75;
         this.show = false;
         this.min = this.target.position.x + this.width + 10;
         this.max = this.target.position.x + this.target.width - this.width - 15;
