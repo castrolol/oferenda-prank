@@ -5,6 +5,7 @@
   "devDependencies": {
     "react-scripts": "1.0.6"
   },
+  "homepage": "http://castrolol.com/burn/",
   "dependencies": {
     "react": "^15.5.4",
     "react-dom": "^15.5.4"

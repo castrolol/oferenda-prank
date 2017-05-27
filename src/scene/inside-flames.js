@@ -1,6 +1,7 @@
 import SceneObject from './base/scene-object';
 import Mouse from './input/mouse';
 
+const baseUrl = window.baseUrl;
 function getrandom(min, max) {
     return (Math.random() * (max - min)) + min;
 }
@@ -36,7 +37,7 @@ class Flames extends SceneObject {
         this.targetX = this.scene.width / 2;
         this.targetY = this.scene.height - 120;
         this.firePoint = this.targetY - 30;
-        this.sound = new Audio("/burn.mp3");
+        this.sound = new Audio(baseUrl + "/burn.mp3");
         this.sound.autoplay = false;
         this.sound.load(); 
         this.sound.loop = false;

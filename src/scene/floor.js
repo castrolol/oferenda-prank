@@ -1,6 +1,6 @@
 import SceneObject from './base/scene-object';
 
-
+const baseUrl = window.baseUrl;
 
 class Target extends SceneObject {
 
@@ -15,7 +15,7 @@ class Target extends SceneObject {
         this.position.y = this.scene.height - this.height;
 
         this.image = new Image();
-        this.image.src = "/floor.png";
+        this.image.src = baseUrl + "/floor.png";
         this.pieces = Math.ceil(this.scene.width / this.width);
 
     }

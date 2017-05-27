@@ -2,6 +2,7 @@ import SceneObject from './base/scene-object';
 
 
 
+const baseUrl = window.baseUrl;
 class TargetFront extends SceneObject {
 
 
@@ -15,7 +16,7 @@ class TargetFront extends SceneObject {
         this.position.y = this.scene.height - this.height - 10;
 
         this.image = new Image();
-        this.image.src = "/caldeirao_frente.png";
+        this.image.src = baseUrl + "/caldeirao_frente.png";
 
 
     }

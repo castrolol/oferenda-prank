@@ -2,6 +2,7 @@ import SceneObject from './base/scene-object';
 
 import Mouse from './input/mouse';
 
+const baseUrl = window.baseUrl;
 class Victim extends SceneObject {
 
     constructor(target) {
@@ -26,7 +27,7 @@ class Victim extends SceneObject {
         this.min = this.target.position.x + this.width + 10;
         this.max = this.target.position.x + this.target.width - this.width - 15;
         this.image = new Image();
-        this.image.src = "/victim.png";
+        this.image.src = baseUrl + "/victim.png";
     }
 
     update() {
